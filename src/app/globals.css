@@ -3,19 +3,56 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
+  --background: #efefef;
   --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.custom-animate-bounce {
+  animation: 1s ease 0s 5 normal none running custom-bounce;
+}
+
+.custom-animate-spin {
+  animation: 1s linear 0s 3 normal none running custom-spin;
+}
+
+.custom-animate-rock {
+  animation: 1s ease 0s 4 normal none running custom-rock;
+}
+
+@keyframes custom-bounce {
+  50% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8,0,1,1);
+  }
+  0%,100% {
+    transform: none;
+    animation-timing-function: cubic-bezier(0,0,0.2,1);
+  }
+}
+
+@keyframes custom-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes custom-rock {
+  0%, 50%, 100% {
+    transform: none;
+    animation-timing-function: cubic-bezier(0,0,0.2,1);
+  }
+  25% {
+    transform: translateX(100px) rotate(45deg);
+    animation-timing-function: cubic-bezier(0.8,0,1,1);
+  }
+  75% {
+    transform: translateX(-100px) rotate(-45deg);
+    animation-timing-function: cubic-bezier(0.8,0,1,1);
+  }
 }
